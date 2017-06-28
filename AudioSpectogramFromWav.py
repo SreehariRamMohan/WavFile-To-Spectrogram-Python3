@@ -27,12 +27,12 @@ def listAllWavNames(directory):
 def convertAllFilesInDirectoryTo16Bit(directory):
     for file in os.listdir(directory):
         if(file.endswith('.wav')):
-            nameSolo = basename(directory+file).rsplit('.', 1)[0]
-            print(nameSolo)
-            data, samplerate = soundfile.read(nameSolo+'.wav')
+            nameSolo = file.rsplit('.', 1)[0]
+            print(directory + nameSolo )
+            data, samplerate = soundfile.read(directory + file)                
+            soundfile.write('/Users/sreeharirammohan/Desktop/SavedSpecs/' + nameSolo + '16BIT.wav', data, samplerate, subtype='PCM_16')
+            print("converting " + file + "to 16 - bit")
             
-
-
 
 def batchConvertFolderOfWav(directory):
     count = 0
@@ -98,4 +98,4 @@ directoryName = '/Users/sreeharirammohan/Desktop/UrbanSound/data/children_playin
 
 #listAllWavNames(directoryName)
 
-convertAllFilesInDirectoryTo16Bit('/Users/sreeharirammohan/Desktop/UrbanSound/data/children_playing')
+convertAllFilesInDirectoryTo16Bit('/Users/sreeharirammohan/Desktop/UrbanSound/data/children_playing/')
