@@ -30,14 +30,14 @@ def convertAllFilesInDirectoryTo16Bit(directory):
             nameSolo = file.rsplit('.', 1)[0]
             print(directory + nameSolo )
             data, samplerate = soundfile.read(directory + file)                
-            soundfile.write('/Users/sreeharirammohan/Desktop/SavedSpecs/' + nameSolo + '16BIT.wav', data, samplerate, subtype='PCM_16')
+            soundfile.write('/Users/sreeharirammohan/Desktop/UrbanSound/data/street_music/' + nameSolo + '16BIT.wav', data, samplerate, subtype='PCM_16')
             print("converting " + file + "to 16 - bit")
             
 
 def batchConvertFolderOfWav(directory):
     count = 0
     for file in os.listdir(directory):
-        if(file.endswith('.wav')):
+        if(file.endswith('16BIT.wav')):
             nameSolo = basename(directory+file).rsplit('.', 1)[0]
             print('sending')
             individualWavToSpectrogram(directory + '/' + file, nameSolo)
@@ -84,18 +84,19 @@ def individualWavToSpectrogram(myAudio, fileNameToSaveTo):
     #plt.xlabel('Time (ms)')
     #plt.ylabel('Amplitude')
     print("trying to save")
-    plt.savefig('/Users/sreeharirammohan/Desktop/SavedSpecs' + fileNameToSaveTo + '.jpg')
+    plt.savefig('/Users/sreeharirammohan/Desktop/SavedUrbanSpectrograms/air_conditioner' + fileNameToSaveTo + '.jpg')
     print("saved")
-    plt.show()
+    print("not going to show now")
+    #plt.show()
 
 
 
-myAudio = "/Users/sreeharirammohan/Desktop/jiaaro-pydub-4abb7f2/test/data/test1.wav"
+#myAudio = "/Users/sreeharirammohan/Desktop/jiaaro-pydub-4abb7f2/test/data/test1.wav"
 #individualWavToSpectrogram(myAudio, "strick")
 
-directoryName = '/Users/sreeharirammohan/Desktop/UrbanSound/data/children_playing'
-#batchConvertFolderOfWav(directoryName)
+directoryName = '/Users/sreeharirammohan/Desktop/UrbanSound/data/air_conditioner'
+batchConvertFolderOfWav(directoryName)
 
 #listAllWavNames(directoryName)
 
-convertAllFilesInDirectoryTo16Bit('/Users/sreeharirammohan/Desktop/UrbanSound/data/children_playing/')
+#convertAllFilesInDirectoryTo16Bit('/Users/sreeharirammohan/Desktop/UrbanSound/data/street_music/')
