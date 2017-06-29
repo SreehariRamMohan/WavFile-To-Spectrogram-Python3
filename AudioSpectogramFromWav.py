@@ -65,7 +65,13 @@ def individualWavToSpectrogram(myAudio, fileNameToSaveTo):
     signalDuration =  mySound.shape[0] / samplingFreq
 
     #If two channels, then select only one channel
-    mySoundOneChannel = mySound[:,0]
+    #mySoundOneChannel = mySound[:,0]
+
+    #if one channel then index like a 1d array, if 2 channel index into 2 dimensional array
+    if len(mySound.shape) > 1:
+        mySoundOneChannel = mySound[:,0]
+    else:
+        mySoundOneChannel = mySound
 
     #Plotting the tone
 
@@ -78,18 +84,17 @@ def individualWavToSpectrogram(myAudio, fileNameToSaveTo):
 
     #Scale to milliSeconds
     timeArray = timeArray * 1000
-
+    plt.rcParams['agg.path.chunksize'] = 100000
     #Plot the tone
     plt.plot(timeArray, mySoundOneChannel, color='Black')
     #plt.xlabel('Time (ms)')
     #plt.ylabel('Amplitude')
     print("trying to save")
-    plt.savefig('/Users/sreeharirammohan/Desktop/SavedUrbanSpectrograms/air_conditioner' + fileNameToSaveTo + '.jpg')
+    plt.savefig('/Users/sreeharirammohan/Desktop/SavedUrbanSpectrograms/air_conditioner/' + fileNameToSaveTo + '.jpg')
     print("saved")
     print("not going to show now")
     #plt.show()
-
-
+    #plt.close()
 
 #myAudio = "/Users/sreeharirammohan/Desktop/jiaaro-pydub-4abb7f2/test/data/test1.wav"
 #individualWavToSpectrogram(myAudio, "strick")
