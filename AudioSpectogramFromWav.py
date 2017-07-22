@@ -1,14 +1,3 @@
-"""Plots
-Time in MS Vs Amplitude in DB of a input wav signal
-"""
-
-#current bug: spectrogram images are repeated, they have titles like carhorn1923416BIT16BIT
-#so the 16 bit gets repeated and the program re-reads them so I need to somehow figure out  how to fix this.
-
-#current bug: The graphs scales aren't small enough. As a result, all of my graphs end up looking like the same
-#black/grey rectangle. 
-
-
 import numpy
 import matplotlib.pyplot as plt
 import pylab
